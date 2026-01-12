@@ -28,9 +28,10 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
 
         # Hash the password before saving
-        user = serializer.save()
-        user.password = make_password(request.data['password'])
-        user.save()
+        user = serializer.save(
+            password = make_password(request.data['password']),
+            role_id = 3  # Default role assignment (e.g., 'customer')
+        )
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
