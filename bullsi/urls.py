@@ -18,12 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from apiBullsi.views import UserViewSet, RoleViewSet
+from apiBullsi.views import UserViewSet, RoleViewSet, StoreViewSet
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet, basename='user')
 router.register(r'roles', RoleViewSet, basename='role')
-
+router.register(r'stores', StoreViewSet, basename='store')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
